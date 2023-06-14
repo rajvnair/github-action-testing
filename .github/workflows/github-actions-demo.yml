@@ -15,7 +15,7 @@ jobs:
       - name: Check for Looker Secret Availability
         id: looker-secret-check
         run: |
-          if [ "$TEST" != "" ] && [ "$TEST" != "" ]; then
+          if [ $TEST != "" ] && [ $TEST != "" ]; then
             echo "available=true" >> "$GITHUB_OUTPUT";
           else
             echo "available=false" >> "$GITHUB_OUTPUT";
