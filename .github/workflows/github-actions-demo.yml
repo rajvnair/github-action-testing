@@ -25,7 +25,7 @@ jobs:
         run: echo steps.looker-secret-check.outputs.available
       - name: secret not available
         if: ${{ steps.looker-secret-check.outputs.available != 'true' }}
-        run: echo steps.looker-secret-check.outputs.available
+        run: echo ${{ steps.looker-secret-check.outputs.available }}
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
