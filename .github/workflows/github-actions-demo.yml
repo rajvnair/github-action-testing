@@ -15,19 +15,19 @@ jobs:
       - name: Check for Looker Secret Availability
         id: looker-secret-check
         run: |
-          if [ $TEST != "" ] && [ $TEST != "" ]; then
-            echo "available=true" >> "$GITHUB_OUTPUT";
+          if [ $TESTING != "" ] && [ $TESTING != "" ]; then
+            echo secret is $TESTING;
           else
-            echo "available=false" >> "$GITHUB_OUTPUT";
+            echo secret is not $TESTING;
           fi
         env:
-          TEST: ${{ secrets.TEST }}
+          TESTING: ${{ secrets.TEST }}
       - name: secret available
         if: ${{ steps.looker-secret-check.outputs.available == 'true'}}
-        run: echo steps.looker-secret-check.outputs.available
+        run: "secret available"
       - name: secret not available
         if: ${{ steps.looker-secret-check.outputs.available != 'true' }}
-        run: echo ${{ steps.looker-secret-check.outputs.available }}
+        run: echo "secret not available"
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
