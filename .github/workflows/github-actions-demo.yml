@@ -15,11 +15,13 @@ jobs:
       - name: Check for Looker Secret Availability
         id: looker-secret-check
         run: |
-          if [ "${{ secrets.TEST }}" != "" ] && [ "${{ secrets.TEST }}" != "" ]; then
+          if [ "$TEST" != "" ] && [ "$TEST" != "" ]; then
             echo "available=true" >> "$GITHUB_OUTPUT";
           else
             echo "available=false" >> "$GITHUB_OUTPUT";
           fi
+        env:
+          TEST: ${{ secrets.TEST }}
       - name: secret available
         if: ${{ steps.looker-secret-check.outputs.available == 'true'}}
         run: echo steps.looker-secret-check.outputs.available
